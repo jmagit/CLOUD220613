@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GildedRose.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">demos-devops (1) (15 jun 2022 13:29:42)</a> &gt; <a href="../../index.html" class="el_group">demos-devops</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.gildedrose</a> &gt; <span class="el_source">GildedRose.java</span></div><h1>GildedRose.java</h1><pre class="source lang-java linenums">package com.gildedrose;
+
+public class GildedRose {
+	public static final int CALIDAD_MAXIMA = 50;
+	public static final int DEGRADACION_ESTANDAR = 1;
+
+	private Item[] items;
+
+	/**
+	 * Crea la tienda partiendo de la lista de productos
+	 * 
+	 * @param items Lista de productos que no puede se nula ni contener productos
+	 *              nulos
+	 * @throws ProductListException Si la lista es nula o uno se sus productos es
+	 *                              nulo
+	 */
+<span class="fc" id="L17">	public GildedRose(Item[] items) throws ProductListException {</span>
+<span class="pc bpc" id="L18" title="1 of 2 branches missed.">		if (items == null)</span>
+<span class="nc" id="L19">			throw new ProductListException(&quot;Es obligatorio contar con la lista de productos&quot;);</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">		for (Item item : items) {</span>
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">			if (item == null)</span>
+<span class="nc" id="L22">				throw new ProductListException(&quot;Item null&quot;);</span>
+		}
+<span class="fc" id="L24">		this.items = items.clone();</span>
+<span class="fc" id="L25">	}</span>
+
+	/**
+	 * Actualiza la calidad de la lista de productos previamente introducida.
+	 */
+	public void updateQuality() {
+<span class="fc bfc" id="L31" title="All 2 branches covered.">		for (int productIndex = 0; productIndex &lt; items.length; productIndex++) {</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">			if (esSulfuras(productIndex))</span>
+<span class="fc" id="L33">				continue; // con sulfuras no se hace nada</span>
+<span class="fc" id="L34">			quitaUnDia(productIndex);</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">			if (esQueso(productIndex)) {</span>
+<span class="fc" id="L36">				updateQuesoQuality(productIndex);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">			} else if (esEntrada(productIndex)) {</span>
+<span class="fc" id="L38">				updateEntradaQuality(productIndex);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">			} else if (esConjurado(productIndex)) {</span>
+<span class="fc" id="L40">				updateConjuradoQuality(productIndex);</span>
+			} else {
+<span class="fc" id="L42">				updateProductosQuality(productIndex);</span>
+			}
+		}
+<span class="fc" id="L45">	}</span>
+
+	private void updateQuesoQuality(int productIndex) {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		incrementaCalidad(productIndex, haCaducado(productIndex) ? 2 : 1);</span>
+<span class="fc" id="L49">	}</span>
+
+	private void updateEntradaQuality(int productIndex) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">		if (haCaducado(productIndex)) {</span>
+<span class="fc" id="L53">			ponACeroCalidad(productIndex);</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">		} else if (quedan5DiasOMenos(productIndex)) {</span>
+<span class="fc" id="L55">			incrementaCalidad(productIndex, 3);</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">		} else if (quedan10diasOMenos(productIndex)) {</span>
+<span class="fc" id="L57">			incrementaCalidad(productIndex, 2);</span>
+		} else {
+<span class="fc" id="L59">			incrementaCalidad(productIndex, 1);</span>
+		}
+<span class="fc" id="L61">	}</span>
+
+	private void updateConjuradoQuality(int productIndex) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">		if (haCaducado(productIndex)) {</span>
+			// caducado degrada al doble de velocidad
+<span class="fc" id="L66">			quitaCalidad(productIndex, 4 * DEGRADACION_ESTANDAR);</span>
+		} else {
+<span class="fc" id="L68">			quitaCalidad(productIndex, 2 * DEGRADACION_ESTANDAR);</span>
+		}
+<span class="fc" id="L70">	}</span>
+
+	private void updateProductosQuality(int productIndex) {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		if (haCaducado(productIndex)) {</span>
+<span class="fc" id="L74">			quitaCalidad(productIndex, 2 * DEGRADACION_ESTANDAR);</span>
+		} else {
+<span class="fc" id="L76">			quitaCalidad(productIndex, DEGRADACION_ESTANDAR);</span>
+		}
+<span class="fc" id="L78">	}</span>
+
+	private boolean esSulfuras(int productIndex) {
+<span class="fc" id="L81">		return items[productIndex].name.equals(&quot;Sulfuras, Hand of Ragnaros&quot;);</span>
+	}
+
+	private boolean esEntrada(int productIndex) {
+<span class="fc" id="L85">		return items[productIndex].name.equals(&quot;Backstage passes to a TAFKAL80ETC concert&quot;);</span>
+	}
+
+	private boolean esQueso(int productIndex) {
+<span class="fc" id="L89">		return items[productIndex].name.equals(&quot;Aged Brie&quot;);</span>
+	}
+
+	private boolean esConjurado(int productIndex) {
+<span class="fc" id="L93">		return items[productIndex].name.equals(&quot;Conjured Mana Cake&quot;);</span>
+	}
+
+	private boolean quedan5DiasOMenos(int productIndex) {
+<span class="fc bfc" id="L97" title="All 2 branches covered.">		return items[productIndex].sellIn &lt; 5;</span>
+	}
+
+	private boolean quedan10diasOMenos(int productIndex) {
+<span class="fc bfc" id="L101" title="All 2 branches covered.">		return items[productIndex].sellIn &lt; 10;</span>
+	}
+
+	private boolean haCaducado(int productIndex) {
+		// los dias negativos son cuando esta caducado
+<span class="fc bfc" id="L106" title="All 2 branches covered.">		return items[productIndex].sellIn &lt; 0;</span>
+	}
+
+	private void quitaUnDia(int productIndex) {
+<span class="fc" id="L110">		items[productIndex].sellIn = items[productIndex].sellIn - 1;</span>
+<span class="fc" id="L111">	}</span>
+
+	private void ponACeroCalidad(int productIndex) {
+<span class="fc" id="L114">		quitaCalidad(productIndex, items[productIndex].quality);</span>
+<span class="fc" id="L115">	}</span>
+
+	private void quitaCalidad(int productIndex, int cantidad) {
+//		int rslt = items[productIndex].quality - cantidad;
+//		items[productIndex].quality = rslt &lt; 0 ? 0 : rslt;
+//
+//		items[productIndex].quality = items[productIndex].quality - cantidad &lt; 0 ?
+//				0 : items[productIndex].quality - cantidad;
+
+<span class="fc bfc" id="L124" title="All 2 branches covered.">		if (items[productIndex].quality - cantidad &lt; 0) {</span>
+<span class="fc" id="L125">			items[productIndex].quality = 0;</span>
+		} else {
+<span class="fc" id="L127">			items[productIndex].quality = items[productIndex].quality - cantidad;</span>
+		}
+
+//		items[productIndex].quality = items[productIndex].quality - 1;
+//		if (items[productIndex].quality &lt; 0) {
+//			items[productIndex].quality = 0;
+//		}
+<span class="fc" id="L134">	}</span>
+
+	private void incrementaCalidad(int productIndex, int cantidad) {
+<span class="fc bfc" id="L137" title="All 2 branches covered.">		if (items[productIndex].quality + cantidad &gt; CALIDAD_MAXIMA) {</span>
+<span class="fc" id="L138">			items[productIndex].quality = CALIDAD_MAXIMA;</span>
+		} else {
+<span class="fc" id="L140">			items[productIndex].quality = items[productIndex].quality + cantidad;</span>
+		}
+<span class="fc" id="L142">	}</span>
+
+	public Item[] getItems() {
+<span class="fc" id="L145">		return items.clone();</span>
+	}
+
+	public Item getItem(int productIndex) {
+<span class="fc" id="L149">		return items[productIndex];</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>demos-devops (1) (15 jun 2022 13:29:42)</div></body></html>

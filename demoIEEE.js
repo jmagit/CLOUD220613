@@ -10,8 +10,8 @@ console.log(1 / 0)
 // }
 
 a = 1
-b = "2$"
+let base = "2$"
 
-c = parseInt(b) * a
+c = parseInt(base) * a
 
 console.log(c)

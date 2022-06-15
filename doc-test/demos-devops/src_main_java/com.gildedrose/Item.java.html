@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Item.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">demos-devops (1) (15 jun 2022 13:29:42)</a> &gt; <a href="../../index.html" class="el_group">demos-devops</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.gildedrose</a> &gt; <span class="el_source">Item.java</span></div><h1>Item.java</h1><pre class="source lang-java linenums">package com.gildedrose;
+
+public class Item {
+	public String name;
+
+	public int sellIn;
+
+	public int quality;
+
+<span class="fc" id="L10">	public Item(String name, int sellIn, int quality) {</span>
+<span class="fc" id="L11">		this.name = name;</span>
+<span class="fc" id="L12">		this.sellIn = sellIn;</span>
+		try {
+<span class="fc" id="L14">			setQuality(quality);</span>
+<span class="nc" id="L15">		} catch (Exception e) {</span>
+<span class="nc" id="L16">			e.printStackTrace();</span>
+<span class="fc" id="L17">		}</span>
+<span class="fc" id="L18">	}</span>
+
+	public String getName() {
+<span class="nc" id="L21">		return name;</span>
+	}
+
+	public void setName(String name) {
+<span class="nc" id="L25">		this.name = name;</span>
+<span class="nc" id="L26">	}</span>
+
+	public int getSellIn() {
+<span class="nc" id="L29">		return sellIn;</span>
+	}
+
+	public void setSellIn(int sellIn) {
+<span class="nc" id="L33">		this.sellIn = sellIn;</span>
+<span class="nc" id="L34">	}</span>
+
+	public int getQuality() {
+<span class="fc" id="L37">		return quality;</span>
+	}
+
+	public void setQuality(int quality) throws Exception {
+<span class="fc bfc" id="L41" title="All 2 branches covered.">		if (quality &lt; 0)</span>
+<span class="fc" id="L42">			throw new Exception(&quot;La cantidad no puede ser negativa.&quot;);</span>
+<span class="fc" id="L43">		this.quality = quality;</span>
+<span class="fc" id="L44">	}</span>
+
+	@Override
+	public String toString() {
+<span class="nc" id="L48">		return this.name + &quot;, &quot; + this.sellIn + &quot;, &quot; + this.quality;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>demos-devops (1) (15 jun 2022 13:29:42)</div></body></html>
