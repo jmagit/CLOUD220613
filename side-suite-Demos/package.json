@@ -1,0 +1,25 @@
+{
+  "name": "Demos",
+  "version": "0.0.0",
+  "jest": {
+    "extraGlobals": [],
+    "modulePaths": [
+      "C:\\Users\\javie\\AppData\\Roaming\\nvm\\v16.14.2\\node_modules\\selenium-side-runner\\node_modules",
+      "C:\\Users\\javie\\AppData\\Roaming\\nvm\\v16.14.2\\node_modules"
+    ],
+    "setupFilesAfterEnv": [
+      "C:\\Users\\javie\\AppData\\Roaming\\nvm\\v16.14.2\\node_modules\\selenium-side-runner\\node_modules\\jest-environment-selenium\\dist\\setup.js"
+    ],
+    "testEnvironment": "jest-environment-selenium",
+    "testEnvironmentOptions": {
+      "capabilities": {
+        "browserName": "firefox"
+      },
+      "params": {},
+      "runId": "aa1e444f5a18b3dfd9eb0d012f098a1d",
+      "path": "C:\\Users\\javie\\AppData\\Roaming\\nvm\\v16.14.2\\node_modules\\",
+      "timeout": 15000
+    }
+  },
+  "dependencies": {}
+}

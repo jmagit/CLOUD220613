@@ -5,7 +5,7 @@
   "url": "http://localhost:8181",
   "tests": [{
     "id": "836a0208-28a5-42b2-b498-27e7727e52e4",
-    "name": "Pagina Principa",
+    "name": "Pagina Principal",
     "commands": [{
       "id": "8fd33812-15da-4b74-9baf-e85cffd57cd8",
       "comment": "",
@@ -695,7 +695,7 @@
     "persistSession": false,
     "parallel": false,
     "timeout": 300,
-    "tests": []
+    "tests": ["3f6e7962-83fd-460b-aa5c-b48b0fa4d8dd", "9b252e85-83c8-4160-88ae-7e0610f998d4", "836a0208-28a5-42b2-b498-27e7727e52e4"]
   }],
   "urls": ["http://localhost:8181/"],
   "plugins": []
