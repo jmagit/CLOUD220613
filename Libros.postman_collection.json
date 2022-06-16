@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "7651bf90-6a6f-46a5-afd0-475f7dd5d265",
+		"name": "Libros",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8273928"
+	},
+	"item": [
+		{
+			"name": "OK",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "Pide todos",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Your test name\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.length).to.eql(5);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8181/api/libros?_page=0&_rows=5&_sort=titulo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8181",
+									"path": [
+										"api",
+										"libros"
+									],
+									"query": [
+										{
+											"key": "_page",
+											"value": "0"
+										},
+										{
+											"key": "_rows",
+											"value": "5"
+										},
+										{
+											"key": "_sort",
+											"value": "titulo"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Pide uno",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Your test name\", function () {\r",
+											"    var jsonData = pm.response.json();\r",
+											"    pm.expect(jsonData.idLibro).to.eql(\"1\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/libros/1",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"libros",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "Crea uno",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idLibro\": \"66\",\r\n    \"titulo\": \"Pinocho\",\r\n    \"autor\": \"Pepito Grillo\",\r\n    \"pais\": \"Italia\",\r\n    \"fecha\": \"1605\",\r\n    \"paginas\": \"377\",\r\n    \"wiki\": \"https://es.wikipedia.org/wiki/Don_Quijote_de_la_Mancha\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/libros",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"libros"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PUT",
+					"item": [
+						{
+							"name": "Modifica uno",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idLibro\": \"66\",\r\n    \"titulo\": \"PINOCHOOOOOO\",\r\n    \"autor\": \"Pepito Grillo\",\r\n    \"pais\": \"Italia\",\r\n    \"fecha\": \"1605\",\r\n    \"paginas\": \"377\",\r\n    \"wiki\": \"https://es.wikipedia.org/wiki/Don_Quijote_de_la_Mancha\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/libros/66",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"libros",
+										"66"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "Borra uno",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 204\", function () {\r",
+											"    pm.response.to.have.status(204);\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/libros/66",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"libros",
+										"66"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "KO",
+			"item": [
+				{
+					"name": "404 Not Found",
+					"item": [
+						{
+							"name": "Pide uno que no existe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/libros/666",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"libros",
+										"666"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Borra uno que no existe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/libros/666",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"libros",
+										"666"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ruta invalida del post",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json, text/html",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"idLibro\": \"66\",\r\n    \"titulo\": \"Pinocho\",\r\n    \"autor\": \"Pepito Grillo\",\r\n    \"pais\": \"Italia\",\r\n    \"fecha\": \"1605\",\r\n    \"paginas\": \"377\",\r\n    \"wiki\": \"https://es.wikipedia.org/wiki/Don_Quijote_de_la_Mancha\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/libros/666",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"libros",
+										"666"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Modifica uno Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idLibro\": \"66\",\r\n    \"titulo\": \"PINOCHOOOOOO\",\r\n    \"autor\": \"Pepito Grillo\",\r\n    \"pais\": \"Italia\",\r\n    \"fecha\": \"1605\",\r\n    \"paginas\": \"377\",\r\n    \"wiki\": \"https://es.wikipedia.org/wiki/Don_Quijote_de_la_Mancha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_base}}/libros/1",
+							"host": [
+								"{{url_base}}"
+							],
+							"path": [
+								"libros",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_base",
+			"value": "http://localhost:8181/api",
+			"type": "string"
+		}
+	]
+}
